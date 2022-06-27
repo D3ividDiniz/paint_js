@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* #painel{
+            height: 500px;
+            width: 600px;
+        } */
+      #menu {
+        display: flex;
+
+        background-image: linear-gradient(rgba(243, 242, 242, 0.261), rgba(124, 124, 124, 0.522));
+        border-radius: 10px;
+        padding:4px
+      }
+      #menu1 {
+        display: flex;
+        width:200px;
+        
+        background-image: linear-gradient(rgba(243, 242, 242, 0.261), rgba(124, 124, 124, 0.522));
+        border-radius: 10px;
+        margin-top:7px;
+        padding:4px
+      }
+      h3 {
+        vertical-align: middle;
+        margin: 5px;
+        font-size: 20px;
+        color: white;
+        
+        text-shadow: 0px 0px 15px rgb(76, 76, 76);
+      }
+      * {
+        font-family: monospace;
+        margin: 0;
+      }
+      td {
+        width: 20px;
+        height: 5px;
+        border-radius: 10px;
+        margin: 3px;
+        cursor: pointer;
+
+      }
+      td:hover, input:hover, button:hover{
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      }
+  
+      button,input {
+        height: 30px;
+        width: 40px;
+        font-size: 20px;
+        background-color: rgba(0,0,0,0.4);
+        color: white;
+        border-radius: 10px;
+        border: none;
+        margin:2px;
+        cursor: pointer;
+      }
+
+      body{
+          display: flex;
+          align-items: center;
+
+          margin: 15px;
+          background-color:rgb(99, 99, 99);
+          color: rgb(41, 41, 41);
+          
+          
+      }
+      img{
+          filter: invert(1);
+      }
+      .bola{
+          background-color:black;
+          border-radius: 50px;
+          color:rgb(41, 41, 41,0.0);
+          cursor: pointer;
+      }
+      #b1{
+          width:10px;
+          height:10px;
+      }
+      #b2{
+          width:15px;
+          height:15px;
+      }
+      #b3{
+          width:20px;
+          height:20px;
+          border: solid 4px white;
+      }
+      #b4{
+          width:25px;
+          height:25px;
+      }
+      #b5{
+          width:30px;
+          height:30px;
+      }
+      
+
+      .painel {
+        box-shadow: 10 0 10 rgba(0,0,0,0.5);
+        cursor:  crosshair;
+        left: 50;
+        height: 600px;
+        border-radius:20px
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="bloco">
+
+      <canvas height="600" width="1200" class="painel" id="painel"></canvas>
+
+      <div id="menu">
+        
+        <h3>Paint</h3>
+        <input id="sel_cor" type="color" />
+        <button id="bt" submit="off" onclick="mudar1()">></button>
+        <table>
+          <tr>
+            <td
+              style="background-color: rgb(255, 0, 0)"
+              onclick="mudar('red')"
+            ></td>
+            <td
+              style="background-color: orangered"
+              onclick="mudar('orangered')"
+            ></td>
+            <td style="background-color: purple" onclick="mudar('purple')"></td>
+            <td style="background-color: blue" onclick="mudar('blue')"></td>
+            <td
+              style="background-color: lightblue"
+              onclick="mudar('lightblue')"
+            ></td>
+            <td style="background-color: yellow" onclick="mudar('yellow')"></td>
+            <td style="background-color: green" onclick="mudar('green')"></td>
+            <td style="background-color: black" onclick="mudar('black')"></td>
+          </tr>
+          
+        </table>
+
+        <button  onclick="mudar('rgb(243, 242, 242)')" id="borracha"><img src="65602.png" height="80%"></button>
+
+      </div>
+      <div id="menu1">
+      <div onclick="tam('b1','10')" class="bola" id="b1">.</div>
+      <div onclick="tam('b2','15')" class="bola" id="b2">.</div>
+      <div onclick="tam('b3','20')" class="bola" id="b3">.</div>
+      <div onclick="tam('b4','30')" class="bola" id="b4">.</div>
+      <div onclick="tam('b5','50')" class="bola" id="b5">.</div>
+    </div>
+
+    </div>
+
+    <script>
+      entrada_cor = document.getElementById("sel_cor");
+      bl = document.getElementById("bloco");
+      pn = document.getElementById("painel");
+      pode = false;
+      tama = 20;
+      u_tama = 'b3'
+      cor = "black";
+
+      let time = 0;
+      pn.style.backgroundColor = "rgb(243, 242, 242)";
+      pencil = pn.getContext("2d");
+      function draw() {
+        px = event.clientX;
+        py = event.clientY;
+        pencil.fillStyle = cor;
+        pencil.fillRect(px - 25, py - 25, tama, tama);
+      }
+      function tam(tip,size){
+          tama = Number(size)
+          document.getElementById(tip).style.border = "4px solid white"
+          document.getElementById(u_tama).style.border = "none"
+          u_tama = tip
+        }
+      function preenchimento() {}
+
+      pn.addEventListener("mousedown", function () {
+        pode = true;
+      });
+      pn.addEventListener("mouseup", function () {
+        pode = false;
+        preenchimento();
+      });
+      pn.addEventListener("mousemove", function () {
+        if (pode == true) {
+          draw();
+        }
+      });
+      bl.addEventListener("mousemove", function () {
+        if (pode == true) {
+          draw();
+        }
+      });
+      function mudar(color) {
+        cor = color;
+      }
+      function mudar1() {
+        cor = entrada_cor.value;
+      }
+    </script>
+  </body>
+</html>
