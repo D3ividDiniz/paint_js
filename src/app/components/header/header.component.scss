@@ -1,0 +1,39 @@
+@use '/src/styles';
+
+.body__header{
+  background-color: rgb(255, 255, 255);
+  height: 68px;
+
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04), 0px 7px 32px rgba(0, 0, 0, 0.06);
+  padding: 0 40px;
+  @include styles.BoxCenter;
+  justify-content: space-between;
+
+}
+.header{
+  &__perfil{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    @include styles.BoxCenter;
+    justify-content: end;
+
+  };
+
+  &__info{
+    & > h3, p{
+      font-size: 1.4rem;
+      text-align: right;
+      @include styles.BoxCenter;
+
+    }
+    margin-left:3.2rem;
+  };
+
+  &__img{
+    height:100%;
+    width: 68px;
+    border-radius: 100%;
+    padding: 0.8rem;
+  }
+}

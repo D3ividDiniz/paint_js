@@ -1,0 +1,23 @@
+<aside class="aside" [ngClass]="{'aside__min':canShow}" (mouseenter)="OpenBar(true)" (mouseleave)="OpenBar(false)">
+  <div>
+    <span class="aside__links">
+      <img src="/assets/ico-home.svg" alt="home icone" class="links__image">
+      <p class="links__name" [ngClass]="{'hide':canShow}">Home</p>
+      <img src="/assets/ico-arrow.svg" alt="arrow icone" class="links__image__right" [ngClass]="{'hide':canShow}">
+    </span>
+    <span class="aside__links">
+      <img src="/assets/ico-rela.svg" alt="relatorio icone" class="links__image">
+      <p class="links__name" [ngClass]="{'hide':canShow}">Dashboard</p>
+      <img src="/assets/ico-arrow.svg" alt="arrow icone" class="links__image__right" [ngClass]="{'hide':canShow}">
+    </span>
+    <span class="aside__links">
+      <img src="/assets/ico-lock.svg" alt="area restrita" class="links__image">
+      <p class="links__name" [ngClass]="{'hide':canShow}">Área Restrita</p>
+      <img src="/assets/ico-arrow.svg" alt="arrow icone" class="links__image__right" [ngClass]="{'hide':canShow}">
+    </span>
+  </div>
+  <div class="aside__goback" [ngClass]="{'aside__goback__fixed':fixed}" (click)="fixedBar()">
+    <img src="/assets/ico-back.svg">
+    <p class="links__name" [ngClass]="{'hide':canShow}">{{!fixed? "Fixar Menu":"Desfixar Menu"}}</p>
+  </div>
+</aside>

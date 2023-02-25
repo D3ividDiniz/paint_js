@@ -1,0 +1,23 @@
+
+.outline{
+  border: 2px #2057E7 solid;
+  color: #2057E7;
+}
+.fill{
+  background-color: #2057E7;
+  color: white;
+  font-weight: 700;
+
+}
+button{
+  height: 36px;
+  padding: 0 2.4rem;
+  font-size: 15px;
+  border:none;
+  border-radius: 1.2rem;
+  cursor: pointer;
+}
+button:hover{
+  transition: 0.2s;
+  background-color: #001e6b;
+}
